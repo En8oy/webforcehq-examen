@@ -19,12 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->double('price', 5, 2);
-
             // Add
             $table->integer('total_quantity');
             $table->integer('stock');
-
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

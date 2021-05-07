@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,62 +16,56 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $product = Product::where("status", true)->get();
+        return response()->json([
+            'data' => $product
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->name;
+        $product->slug = Str::slug($product->name);
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->total_quantity = $request->total_quantity;
+        $product->stock = $request->stock;
+        $product->status = $request->status;
+        $product->save();
+
+        return response()->json([
+            "data" => $product,
+            "message" => "Product created"
+        ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
     {
-        //
+        return response()->json([
+            'data' => $product
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
+        $product->name = $request->name;
+        $product->slug = Str::slug($product->name);
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->total_quantity = $request->total_quantity;
+        $product->stock = $request->stock;
+        $product->status = $request->status;
+        $product->save();
+        return response()->json([
+            "data" => $product,
+            "message" => "Product updated"
+        ], 200);
     }
 
     /**
@@ -80,6 +76,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $oldProduct = $product;
+        $product->delete();
+        return response()->json([
+            'data' => $oldProduct,
+            'message' => "Product deleted"
+        ], 200);
     }
 }

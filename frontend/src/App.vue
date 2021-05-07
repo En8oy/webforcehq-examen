@@ -6,35 +6,22 @@
       dark
     >
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <router-link to="/">
+          <v-btn text >
+            WebforceHQ Store
+          </v-btn>
+        </router-link>
       </div>
-
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <router-link :to="route.path" v-for="route in publicRoutes" :key="route.name">
+        <v-btn
+          text
+          
+        >
+          <v-icon v-text="route.icon"></v-icon>
+          <span class="mr-2" v-text="route.name"></span>
+        </v-btn>
+      </router-link>
     </v-app-bar>
 
     <v-main>
@@ -44,12 +31,27 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-
-  data: () => ({
-    //
-  }),
-};
+  data() {
+    return {
+      publicRoutes : [
+        {
+          name : "Home",
+          path : "/",
+          icon : "mdi-home"
+        },
+        {
+          name : "Products",
+          path : "/about",
+          icon : "mdi-store"
+        },
+        {
+          name : "Log in",
+          path : "/login",
+          icon : "mdi-login"
+        }
+      ]
+    }
+  },
+}
 </script>

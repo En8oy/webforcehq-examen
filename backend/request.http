@@ -1,0 +1,38 @@
+###Get all products
+http://127.0.0.1:8000/api/products/
+
+###Get one product
+http://127.0.0.1:8000/api/products/hamburger-2
+
+### Nuevo Producto
+POST http://127.0.0.1:8000/api/products/
+content-type: application/json
+
+{
+    "name" : "Hamburger",
+    "description" : "lorem weiuhiuwhediuww wiuedhwuid",
+    "price" : "100.00",
+    "total_quantity" : 10,
+    "stock" : 10,
+    "status" : true
+}
+
+### Edit product
+PUT http://127.0.0.1:8000/api/products/hamburger
+content-type: application/json
+
+{
+    "name" : "Hamburger 2",
+    "description" : "lorem weiuhiuwhediuww wiuedhwuid 2",
+    "price" : "100.00",
+    "total_quantity" : 10,
+    "stock" : 10,
+    "status" : true
+}
+
+###Get all users
+http://127.0.0.1:8000/api/users/
+
+###Get one product
+DELETE http://127.0.0.1:8000/api/products/hamburger-2
+

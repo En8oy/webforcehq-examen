@@ -30,9 +30,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $product = new Product();
-        $product->name = $request->name;
+        $product->name = Str::title($request->name);
         $product->slug = Str::slug($product->name);
-        $product->description = $request->description;
+        $product->description = Str::ucfirst($request->description);
         $product->price = $request->price;
         $product->total_quantity = $request->total_quantity;
         $product->stock = $request->stock;
@@ -54,9 +54,9 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        $product->name = $request->name;
+        $product->name = Str::title($request->name);
         $product->slug = Str::slug($product->name);
-        $product->description = $request->description;
+        $product->description = Str::ucfirst($request->description);
         $product->price = $request->price;
         $product->total_quantity = $request->total_quantity;
         $product->stock = $request->stock;

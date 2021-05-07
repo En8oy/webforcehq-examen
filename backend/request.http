@@ -30,9 +30,34 @@ content-type: application/json
     "status" : true
 }
 
-###Get all users
-http://127.0.0.1:8000/api/users/
-
 ###Get one product
 DELETE http://127.0.0.1:8000/api/products/hamburger-2
 
+###Get all users
+http://127.0.0.1:8000/api/users/
+
+###Get one user
+http://127.0.0.1:8000/api/users/irbing-alejandro-moreno-garcia
+
+### New user
+POST http://127.0.0.1:8000/api/users/
+content-type: application/json
+
+{
+    "name" : "Irbing Alejandro Moreno Garcia",
+    "email" : "irbing.moreno@outlook.com",
+    "password" : "SuperPassword"
+}
+### New user
+PUT http://127.0.0.1:8000/api/users/irbing-alejandro-moreno-garcia
+content-type: application/json
+
+{
+    "name" : "irbing moreno olmos",
+    "email" : "irbing.moreno@outlook.com",
+    "password" : "SuperPassword"
+}
+
+
+###Delelte user
+DELETE http://127.0.0.1:8000/api/users/irbing-moreno-olmos

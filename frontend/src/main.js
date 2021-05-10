@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
+require('vue2-animate/dist/vue2-animate.min.css')
+
 Vue.config.productionTip = false
 
 new Vue({

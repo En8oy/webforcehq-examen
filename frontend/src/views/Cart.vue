@@ -42,31 +42,39 @@
             Personal Information
           </p>
           <v-card-text>
-            <v-form>
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field label="Full name" required></v-text-field>
+                    <v-text-field label="Full name" required 
+                      v-model="user.name"
+                    ></v-text-field>
                   </v-col>
 
                   <v-col cols="12">
-                    <v-text-field label="Full Address" required></v-text-field>
+                    <v-text-field label="Full Address" required 
+                      v-model="user.address"
+                    ></v-text-field>
                   </v-col>
 
                   <v-col cols="12">
-                    <v-text-field label="Country" required></v-text-field>
+                    <v-text-field label="Country" required 
+                      v-model="user.country"
+                    ></v-text-field>
                   </v-col>
 
                   <v-col cols="12">
-                    <v-text-field label="State" required></v-text-field>
+                    <v-text-field label="State" required 
+                      v-model="user.state"
+                    ></v-text-field>
                   </v-col>
 
                   <v-col cols="12">
-                    <v-text-field label="E-mail" required></v-text-field>
+                    <v-text-field label="E-mail" required 
+                      v-model="user.email"
+                    ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
-            </v-form>
           </v-card-text>
         </v-card>
       </v-col>
@@ -83,30 +91,33 @@
             src="https://storage.googleapis.com/wfs/images/cc.png"
           ></v-img>
           <v-card-text>
-            <v-form>
               <v-container>
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
                       label="Credit Card Number"
                       required
+                      v-model="user.ccn"
+                      v-mask="'####-####-####-####'"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6">
                     <v-text-field
                       label="Credit Card Expiration Date"
                       required
+                      v-model="user.ccd"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6">
                     <v-text-field
                       label="Credit Card CCV"
+                      v-model="user.ccv"
                       required
+                      v-mask="'###'"
                     ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
-            </v-form>
           </v-card-text>
         </v-card>
       </v-col>
@@ -139,6 +150,18 @@
 export default {
   data() {
     return {
+      user : {
+        // Perosnal Information
+        name : "",
+        address : "",
+        country : "",
+        state : "",
+        email : "",
+        // Credit Cart Information
+        ccn : "",
+        ccd : "",
+        ccv : ""
+      }
     }
   },
   methods: {

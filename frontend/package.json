@@ -9,21 +9,22 @@
   "dependencies": {
     "animejs": "^3.2.1",
     "axios": "^0.21.1",
+    "v-mask": "^2.2.4",
     "vue": "^2.6.11",
     "vue-infinite-loading": "^2.4.5",
     "vue-router": "^3.2.0",
     "vue-toast-notification": "^0.6.1",
     "vue2-animate": "^2.1.4",
-    "vuetify": "^2.4.0",
+    "vuetify": "^2.5.0",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-plugin-router": "^4.5.13",
+    "@vue/cli-plugin-vuex": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
     "sass": "^1.32.0",
-    "sass-loader": "^10.0.0",
+    "sass-loader": "^10.2.0",
     "vue-cli-plugin-vuetify": "~2.4.0",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.7.0"

@@ -2,7 +2,7 @@
 http://127.0.0.1:8000/api/products/
 
 ###Get one product
-http://127.0.0.1:8000/api/products/hamburger-2
+http://127.0.0.1:8000/api/products/synergistic-systemic-implementation
 
 ### Nuevo Producto
 POST http://127.0.0.1:8000/api/products/

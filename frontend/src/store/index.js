@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Product from './product'
 import User from './user'
+import Cart from './cart'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
-
 export default new Vuex.Store({
   state: {
+    url : "http://127.0.0.1:8000/api/",
     color : "blue",
     colors : [
       {color : "red darken-4", name : "Red"},
@@ -26,13 +28,14 @@ export default new Vuex.Store({
   },
   mutations: {
     CHANGE_COLOR(state, payload){
-
     }
   },
   actions: {
   },
   modules: {
     Product,
-    User
-  }
+    User,
+    Cart
+  },
+  plugins: [createPersistedState()]
 })

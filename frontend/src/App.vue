@@ -16,25 +16,19 @@
               <v-icon v-text="route.icon" class="ma-5"></v-icon>
               {{route.name}}
             </v-tab>
-            <v-tab to="/my-car" class="white--text">
+            <v-tab to="/my-car" class="white--text" v-if="$store.state.Cart.carts.length > 0">
               <v-badge
                 color="red"
-                content="6"
+                :content="$store.state.Cart.carts.length"
               >
                 <v-icon class="mr-5">mdi-cart-outline</v-icon>
                 My Car
               </v-badge>
             </v-tab>
-            <!-- <v-tab class="white--text" to="/my-car">
-              <v-badge
-                color="green"
-                content="6"
-              >
+            <v-tab class="white--text" to="/my-car" v-else>
                 <v-icon class="ma-5">mdi-cart-outline</v-icon>
               Car
-              </v-badge>
-              
-            </v-tab> -->
+            </v-tab>
         </v-tabs>
       </template>
     </v-app-bar>

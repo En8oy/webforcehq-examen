@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $product = Product::where("status", true)->get();
         return response()->json([
-            'data' => $product
+            'products' => $product
         ], 200);
     }
 
@@ -48,7 +48,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return response()->json([
-            'data' => $product
+            'product' => $product
         ], 200);
     }
 

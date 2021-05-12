@@ -16,18 +16,18 @@
               <v-icon v-text="route.icon" class="ma-5"></v-icon>
               {{route.name}}
             </v-tab>
-            <v-tab to="/my-car" class="white--text" v-if="$store.state.Cart.carts.length > 0">
+            <v-tab to="/my-cart" class="white--text" v-if="$store.state.Cart.carts.length > 0">
               <v-badge
                 color="red"
                 :content="$store.state.Cart.carts.length"
               >
                 <v-icon class="mr-5">mdi-cart-outline</v-icon>
-                My Car
+                My Cart
               </v-badge>
             </v-tab>
-            <v-tab class="white--text" to="/my-car" v-else>
+            <v-tab class="white--text" to="/my-cart" v-else>
                 <v-icon class="ma-5">mdi-cart-outline</v-icon>
-              Car
+                My Cart
             </v-tab>
         </v-tabs>
       </template>
@@ -44,6 +44,11 @@
         <v-col>
           <v-card class="text-center pa-10 white--text" elevation="5" color="grey darken-3">
             {{new Date().getFullYear() }} © WebForce LLC.
+            <br>
+            <v-btn class="ma-5" href="https://github.com/en8oy" target="_blank">
+              <v-icon>mdi-github</v-icon>
+              Made By En8oy
+            </v-btn>
           </v-card>
         </v-col>
       </v-row>

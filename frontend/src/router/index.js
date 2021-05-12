@@ -39,7 +39,7 @@ const routes = [
     component : Login
   },
   {
-    path: '/my-car',
+    path: '/my-cart',
     name : 'My Car',
     component : Cart
   }

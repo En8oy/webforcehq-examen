@@ -32,9 +32,14 @@ export default {
                 total = total + price;
             }
             state.total = total
+        },
+        CLEAN_CART(state){
+            state.carts = [],
+            state.total = 0
         }
     },
     actions : {
+
         addToCart({rootState, commit}, payload){
             return new Promise((resolve) => {
                 commit("SET_CART", payload)
@@ -48,6 +53,9 @@ export default {
                 commit("UPDATE_TOTAL")
                 resolve("Product Deleted")
             })
+        },
+        cleanData({commit}, payload){
+            commit("CLEAN_CART")
         }
     }
 }

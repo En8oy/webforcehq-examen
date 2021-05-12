@@ -42,7 +42,7 @@
             </v-card-text>
             <v-divider class="mx-4"></v-divider>
             <v-card-text>
-              <p style="font-size: 1.5rem">Price: $ {{ product.price }}</p>
+              <p style="font-size: 1.5rem">Price: $ {{ product.price.toFixed(2) }}</p>
             </v-card-text>
             <v-divider class="mx-4"></v-divider>
             <v-card-title>There are stock?</v-card-title>

@@ -13,7 +13,7 @@
           </p>
           <v-card-text class="text-left pa-10">
             <p style="font-size: 3rem" class="mt-10 mb-10">
-              <strong v-text="'$' + $store.state.Product.product.price"></strong>
+              <strong v-text="'$' + $store.state.Product.product.price.toFixed(2)"></strong>
             </p>
             <p style="font-size: 1.2rem" class="mt-5 mb-5">
               Stock: {{$store.state.Product.product.stock}}/{{$store.state.Product.product.total_quantity}} Available
@@ -30,7 +30,7 @@
                   <v-text-field label="Quantity" type="number" :max="$store.state.Product.product.stock" min="1" v-model="quantity"></v-text-field>
                 </v-col>
                 <v-col>
-                  <v-btn @click="addToCart()" block large :color="$store.state.color" dark v-show="quantity <= $store.state.Product.product.stock">
+                  <v-btn @click="addToCart(false)" block large :color="$store.state.color" dark v-show="quantity <= $store.state.Product.product.stock">
                     <v-icon class="ma-2">mdi-plus</v-icon>
                     Add to cart
                   </v-btn>
@@ -38,7 +38,7 @@
               </v-row>
               <v-row>
                 <v-col>
-                  <v-btn color="success" block large dark v-show="quantity <= $store.state.Product.product.stock"> Buy Now </v-btn>
+                  <v-btn @click="addToCart(true)" color="success" block large dark v-show="quantity <= $store.state.Product.product.stock"> Buy Now </v-btn>
                 </v-col>
               </v-row>
             </div>
@@ -75,7 +75,7 @@ export default {
       })
   },
   methods: {
-    addToCart(){
+    addToCart(toGo){
       this.$store.dispatch("Cart/addToCart",  {id : this.$store.state.Product.product.id, name: this.$store.state.Product.product.name, price: this.$store.state.Product.product.price, quantity: this.quantity, stock : this.$store.state.Product.product.stock }).then(message => {
         this.$toast.open({
           position: "top-right",
@@ -89,6 +89,9 @@ export default {
           type: "error",
         });
       })
+      if (toGo) {
+        this.$router.push("/my-cart")
+      }
     }
   },
 };

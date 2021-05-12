@@ -61,3 +61,12 @@ content-type: application/json
 
 ###Delelte user
 DELETE http://127.0.0.1:8000/api/users/irbing-moreno-olmos
+
+###Login
+POST http://127.0.0.1:8000/api/login/
+content-type: application/json
+
+{
+    "email" : "irbing.moreno@outlook.com",
+    "password" : "password"
+}

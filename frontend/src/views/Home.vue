@@ -136,10 +136,11 @@ export default {
               message: "There are no orders",
               type: "error",
             });
+            this.orders = []
           }
         })
         .catch((err) => {
-          console.error(err);
+            this.orders = []
         });
       this.loading = false;
     },

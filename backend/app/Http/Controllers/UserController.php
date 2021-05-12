@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Http\Requests\UserRequest;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Auth;
+
 class UserController extends Controller
 {
     /**
@@ -33,7 +37,7 @@ class UserController extends Controller
         return response()->json([
             "data" => $user,
             "message" => "User registred"
-        ],200);
+        ], 200);
     }
 
     public function show(User $user)
@@ -53,7 +57,7 @@ class UserController extends Controller
         return response()->json([
             "data" => $user,
             "message" => "User updated"
-        ],200);
+        ], 200);
     }
 
     public function destroy(User $user)
@@ -64,5 +68,78 @@ class UserController extends Controller
             "data" => $oldUser,
             "message" => "User deleted"
         ], 200);
+    }
+
+    public function authenticate(Request $request)
+    {
+        // return $request->all();
+        $credentials = $request->only('email', 'password');
+        try {
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'Invalid access'], 400);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Token was created'], 500);
+        }
+        $user = Auth::user();
+        return response()->json([
+            "token" => $token,
+            "user" => $user
+        ]);
+    }
+
+    public function getAuthenticatedUser()
+    {
+        try {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
+                    return response()->json(['user_not_found'], 404);
+            }
+            } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                    return response()->json(['token_expired'], $e->getStatusCode());
+            } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                    return response()->json(['token_invalid'], $e->getStatusCode());
+            } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+                    return response()->json(['token_absent'], $e->getStatusCode());
+            }
+            return response()->json(compact('user'));
+    }
+
+    public function refreshToken(){
+        $token = JWTAuth::getToken();
+        try {
+            $token = JWTAuth::refresh($token);
+            $user = Auth::user();
+            return response()->json([
+                "token" => $token,
+                "user" => $user
+            ]);
+        } catch (TokenExpiredExceotion $ex) {
+            return response()->json([
+                'success' => false,
+                'message' => "Expired Session",
+            ],422);
+        }
+        catch (TokenBlackListedException $ex) {
+            return response()->json([
+                'success' => false,
+                'message' => "Invalid Session",
+            ],422);
+        }
+    }
+
+    public function logout(){
+        return $token = JWTAuth::getToken();
+        try {
+            JWTAuth::invalidate($token);
+            return response()->json([
+                'success' => true,
+                'message' => "Logout Success",
+            ], 200);
+        } catch (JWTException $ex) {
+            return response()->json([
+                'success' => false,
+                'message' => "Error Logout",
+            ],422);
+        }
     }
 }

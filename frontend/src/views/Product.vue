@@ -21,6 +21,10 @@
             <p style="font-size: 1.2rem">
               Description: {{$store.state.Product.product.description}}
             </p>
+            <p class="mt-10">
+              <v-icon class="ma-5">mdi-clock</v-icon>
+              published <timeago :datetime="$store.state.Product.product.updated_at" :auto-update="60"></timeago>
+            </p>
             <div class="pa-10">
               <p style="font-size: 1.2rem" class="text-center mt-5 mb-5">
                 BUY NOW

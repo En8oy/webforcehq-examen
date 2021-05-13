@@ -25,17 +25,6 @@
           <v-card-title> {{ product.name }} </v-card-title>
           <div class="text-left">
             <v-card-text>
-              <v-row align="center" class="mx-0">
-                <!-- <v-rating
-                  :value="4.5"
-                  color="amber"
-                  dense
-                  half-increments
-                  readonly
-                  size="14"
-                ></v-rating> -->
-                <!-- <div class="grey--text ml-4">4.5 (413)</div> -->
-              </v-row>
               <div>
                 {{ product.description }}
               </div>
@@ -51,6 +40,11 @@
                 >Stock</v-chip
               >
               <v-chip v-else color="red" dark>No Stock</v-chip>
+              <p class="mt-10">
+                <v-icon class="ma-5">mdi-clock</v-icon>
+                published <timeago :datetime="product.updated_at" :auto-update="60"></timeago>
+              </p>
+
             </v-card-text>
           </div>
           <v-card-actions>

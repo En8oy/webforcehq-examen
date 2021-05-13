@@ -8,9 +8,14 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import anime from 'animejs/lib/anime.es.js';
 import VueMask from 'v-mask'
+import VueTimeago from 'vue-timeago'
 require('vue2-animate/dist/vue2-animate.min.css')
 Vue.use(VueMask);
 
+Vue.use(VueTimeago, {
+  name: 'Timeago',
+  locale: 'en',
+})
 require('vue2-animate/dist/vue2-animate.min.css')
 Vue.use(VueToast);
 Vue.config.productionTip = false

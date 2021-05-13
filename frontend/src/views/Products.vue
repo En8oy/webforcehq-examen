@@ -18,10 +18,6 @@
               indeterminate
             ></v-progress-linear>
           </template>
-          <v-img
-            height="250"
-            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-          ></v-img>
           <v-card-title> {{ product.name }} </v-card-title>
           <div class="text-left">
             <v-card-text>
@@ -94,17 +90,6 @@ export default {
       });
   },
   methods: {
-    // toCart(product) {
-    //   this.loading = true;
-    //   this.$store.dispatch("Cart/addToCart", {id : product.id, name: product.name, price: product.price, quantity: 1, add : true}).then((message) => {
-    //     this.loading = false;
-    //     this.$toast.open({
-    //       position: "top-right",
-    //       message: message,
-    //       type: "success",
-    //     });
-    //   });
-    // },
   },
 };
 </script>

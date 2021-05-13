@@ -24,18 +24,9 @@ Route::resource('orders', OrderController::class)->only("store");
 
 Route::post('login', [UserController::class, "authenticate"]);
 
-Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'auth'], function(){
-    Route::resource('orders', OrderController::class);
+Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'admin'], function () {
+    Route::get('logout', [UserController::class, "logout"]);
     Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
 });
-
-// Route::group(['middleware' => 'api'], function ($router) {
-    // Route::post('login', 'AuthController@login');
-    // Route::post('logout', 'AuthController@logout');
-    // Route::post('refresh', 'AuthController@refresh');
-    // Route::post('me', 'AuthController@me');
-// });
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

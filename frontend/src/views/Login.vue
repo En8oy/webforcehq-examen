@@ -52,10 +52,10 @@ export default {
             this.$store.dispatch("User/login", {email: this.email, password : this.password}).then(message => {
                   this.$toast.open({
                   position: "top-right",
-                  message: "Good",
+                  message: "Login Success",
                   type: "success",
                 });
-                this.$router.push("/auth/orders")
+                this.$router.push("/admin/orders")
             }).catch(error => {
                 this.$toast.open({
                 position: "top-right",

@@ -8,9 +8,9 @@ import Cart from '../views/Cart.vue'
 import Error from '../views/Error.vue'
 import store from '@/store'
 // Auth
-import OrderAdmin from '../views/Auth/Order.vue'
-import ProductAdmin from '../views/Auth/Product.vue'
-import UserAdmin from '../views/Auth/User.vue'
+import OrderAdmin from '../views/Admin/Order.vue'
+import ProductAdmin from '../views/Admin/Product.vue'
+import UserAdmin from '../views/Admin/User.vue'
 
 
 function guardMyroute(to, from, next){
@@ -51,7 +51,7 @@ const routes = [
     component : Login,
     beforeEnter: (to, from, next) => { 
       if (store.state.User.token) {
-        next("/auth/orders")
+        next("/admin/orders")
       } else {
         next()
       }
@@ -63,19 +63,19 @@ const routes = [
     component : Cart
   },
   {
-    path: '/auth/orders',
+    path: '/admin/orders',
     name : 'Orders',
     beforeEnter : guardMyroute,
     component : OrderAdmin
   },
   {
-    path: '/auth/products',
+    path: '/admin/products',
     name : 'Products Admin',
     beforeEnter : guardMyroute,
     component : ProductAdmin
   },
   {
-    path: '/auth/users',
+    path: '/admin/users',
     name : 'Users',
     beforeEnter : guardMyroute,
     component : UserAdmin

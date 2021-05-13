@@ -6,10 +6,14 @@ export default {
         user : {}
     },
     mutations : {
-        SET_USER(state, payload, commit){
+        SET_USER(state, payload){
             state.token = payload.token,
             state.user = payload.user
         },
+        CLEAN_USER(state, payload){
+            state.token = "",
+            state.user = {}
+        }
         
     },
     actions : {
@@ -25,5 +29,14 @@ export default {
                 })
             })
         },
+        logout({rootState, commit}, payload){
+            axios.get(rootState.url + "admin/logout",{headers: { Authorization: "Bearer " + rootState.User.token }})
+            .then(res => {
+                commit("CLEAN_USER");
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
 }

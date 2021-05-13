@@ -67,7 +67,7 @@ class OrderController extends Controller
                 $order->country = Str::title($request->country);
                 $order->state = Str::title($request->state);
                 $order->email = $request->email;
-                $order->ccn = Hash::make($request->ccn);
+                $order->ccn = $request->ccn;
                 $order->ccd= Hash::make($request->ccd);
                 $order->ccv = Hash::make($request->ccv);
                 $order->save();
@@ -119,9 +119,14 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(OrderRequest $request, Order $order)
+    public function update(Request $request, Order $order)
     {
-        //
+        $order->status = $request->status;
+        $order->save();
+        return response()->json([
+            "order" => $order,
+            "message" => "Order update"
+        ], 200);
     }
 
     /**
@@ -132,7 +137,12 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $oldOrder = $order;
+        $order->delete();
+        return response()->json([
+            "order" => $order,
+            "message" => "Order deleted"
+        ], 200);
     }
 
     public function findByEmail(Request $request)

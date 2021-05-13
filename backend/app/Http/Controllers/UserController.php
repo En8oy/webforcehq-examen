@@ -128,7 +128,7 @@ class UserController extends Controller
     }
 
     public function logout(){
-        return $token = JWTAuth::getToken();
+        $token = JWTAuth::getToken();
         try {
             JWTAuth::invalidate($token);
             return response()->json([

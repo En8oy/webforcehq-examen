@@ -13,4 +13,8 @@ class Order extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    protected $hidden = [
+        'ccd',
+        'ccv',
+    ];
 }

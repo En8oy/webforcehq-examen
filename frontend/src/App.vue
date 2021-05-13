@@ -17,6 +17,10 @@
             <v-icon v-text="route.icon" class="ma-5"></v-icon>
             {{ route.name }}
           </v-tab>
+          <v-tab class="white--text" @click="logout()">
+            <v-icon class="mr-5">mdi-logout</v-icon>
+            Logout
+          </v-tab>
         </v-tabs>
         <v-tabs centered v-else>
           <v-tab
@@ -94,30 +98,47 @@ export default {
           path: "/products",
           icon: "mdi-store",
         },
-        // {
-        //   name : "Log in",
-        //   path : "/login",
-        //   icon : "mdi-login"
-        // }
       ],
       authRoutes: [
         {
           name: "Orders",
-          path: "/auth/orders",
+          path: "/admin/orders",
           icon: "mdi-currency-usd",
         },
         {
           name: "Products",
-          path: "/auth/products",
+          path: "/admin/products",
           icon: "mdi-store",
         },
         {
           name: "Users",
-          path: "/auth/users",
+          path: "/admin/users",
           icon: "mdi-account",
         },
       ],
     };
+  },
+  methods: {
+    logout() {
+      this.$store
+        .dispatch("User/logout")
+        .then((message) => {
+          this.$router.push("/");
+          this.$toast.open({
+            position: "top-right",
+            message: "Logout success",
+            type: "success",
+          });
+        })
+        .catch((error) => {
+          this.$router.push("/");
+          this.$toast.open({
+            position: "top-right",
+            message: "Logout success",
+            type: "warning",
+          });
+        });
+    },
   },
 };
 </script>

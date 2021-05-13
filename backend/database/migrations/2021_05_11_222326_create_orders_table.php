@@ -27,7 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string("ccv");
             $table->double("total_sale_price");
             $table->enum("status", ["Preparing", "Sending", "Delivered"])->default("Preparing");
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete("cascade");
             $table->timestamps();
         });
     }

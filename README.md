@@ -20,3 +20,6 @@ cd frontend
 npm install
 npm run install
 ```
+
+For the login need to enter to ``` /login ``` in frontend project.
+the credentials are email in the database and "password"

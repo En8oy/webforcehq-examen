@@ -47,6 +47,13 @@
                 >
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
+                <v-file-input
+                    show-size
+                    label="Image"
+                    truncate-length="50"
+                    @change="changeImage($event, item)"
+                    accept="image/*"
+                ></v-file-input>
               </div>
             </template>
           </v-data-table>
@@ -271,6 +278,27 @@ export default {
           console.error(err);
         });
     },
+    changeImage(event, data){
+      const fd = new FormData();
+      fd.append('image', event, event.name)
+      fd.append('id', data.id)
+      axios.post(this.$store.state.url + "admin/products/image", fd,{ headers: { Authorization: "Bearer " + this.$store.state.User.token }})
+      .then(res => {
+        this.restoreData()
+        this.$toast.open({
+          message: "Image Changed",
+          type: "success",
+          position: "top-right",
+        });
+      })
+      .catch(err => {
+        this.$toast.open({
+          message: "Error",
+          type: "error",
+          position: "top-right",
+        });
+        })
+    }
   },
 };
 </script>

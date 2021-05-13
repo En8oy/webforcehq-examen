@@ -47,6 +47,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $product->getFirstMedia();
         return response()->json([
             'product' => $product
         ], 200);
@@ -81,6 +82,15 @@ class ProductController extends Controller
         return response()->json([
             'data' => $oldProduct,
             'message' => "Product deleted"
+        ], 200);
+    }
+
+    public function image(Request $request){
+        $product = Product::find($request->id);
+        $product->addMedia($request->file('image'))->toMediaCollection();
+        $product->save();
+        return response()->json([
+            "message" => "Image uploaded"
         ], 200);
     }
 }

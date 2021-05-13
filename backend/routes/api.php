@@ -25,6 +25,7 @@ Route::resource('orders', OrderController::class)->only("store");
 Route::post('login', [UserController::class, "authenticate"]);
 
 Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'admin'], function () {
+    Route::post('products/image', [ProductController::class, "image"]);
     Route::get('logout', [UserController::class, "logout"]);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);

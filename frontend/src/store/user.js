@@ -7,20 +7,21 @@ export default {
     },
     mutations : {
         SET_USER(state, payload, commit){
-    
+            state.token = payload.token,
+            state.user = payload.user
         },
         
     },
     actions : {
         login({rootState, commit}, payload){
-            return new Promise(resolve => {
-                axios.post(rootState.url + "login",params)
+            return new Promise((resolve, reject) => {
+                axios.post(rootState.url + "login",payload)
                 .then(res => {
-                    console.log(res)
-                    resolve("success")
+                    commit("SET_USER", res.data);
+                    resolve("Login Success")
                 })
                 .catch(err => {
-                    console.error(err); 
+                    reject(err)
                 })
             })
         },

@@ -6,8 +6,20 @@ import Products from '../views/Products.vue'
 import Login from '../views/Login.vue'
 import Cart from '../views/Cart.vue'
 import Error from '../views/Error.vue'
+import store from '@/store'
+// Auth
+import OrderAdmin from '../views/Auth/Order.vue'
+import ProductAdmin from '../views/Auth/Product.vue'
+import UserAdmin from '../views/Auth/User.vue'
 
 
+function guardMyroute(to, from, next){
+  if(store.state.User.token != ""){
+      next()
+  }else{
+    next("/login")
+  }
+}
 
 Vue.use(VueRouter)
 
@@ -36,12 +48,37 @@ const routes = [
   {
     path: '/login',
     name : 'Log in',
-    component : Login
+    component : Login,
+    beforeEnter: (to, from, next) => { 
+      if (store.state.User.token) {
+        next("/auth/orders")
+      } else {
+        next()
+      }
+    },
   },
   {
     path: '/my-cart',
     name : 'My Car',
     component : Cart
+  },
+  {
+    path: '/auth/orders',
+    name : 'Orders',
+    beforeEnter : guardMyroute,
+    component : OrderAdmin
+  },
+  {
+    path: '/auth/products',
+    name : 'Products Admin',
+    beforeEnter : guardMyroute,
+    component : ProductAdmin
+  },
+  {
+    path: '/auth/users',
+    name : 'Users',
+    beforeEnter : guardMyroute,
+    component : UserAdmin
   }
 ]
 

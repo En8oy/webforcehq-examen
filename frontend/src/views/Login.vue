@@ -49,12 +49,13 @@ export default {
     methods: {
         login(){
           if (this.email != "" && this.password != "") {
-            this.$store.dispatch("User/login", {user: this.user, password : this.password}).then(message => {
+            this.$store.dispatch("User/login", {email: this.email, password : this.password}).then(message => {
                   this.$toast.open({
                   position: "top-right",
                   message: "Good",
                   type: "success",
                 });
+                this.$router.push("/auth/orders")
             }).catch(error => {
                 this.$toast.open({
                 position: "top-right",
@@ -70,16 +71,6 @@ export default {
               type: "warning",
             });
           }
-          // this.loading = true
-          // axios.post(this.$store.state.url + "login", {email : this.email, password : this.password})
-          // .then(res => {
-          //   console.log(res.data)
-          //   this.loading = false
-          // })
-          // .catch(err => {
-          //   this.loading = false
-          //   console.error(err); 
-          // })
         }
     },
 }

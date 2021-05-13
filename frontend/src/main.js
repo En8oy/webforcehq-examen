@@ -8,6 +8,7 @@ import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 import anime from 'animejs/lib/anime.es.js';
 import VueMask from 'v-mask'
+require('vue2-animate/dist/vue2-animate.min.css')
 Vue.use(VueMask);
 
 require('vue2-animate/dist/vue2-animate.min.css')

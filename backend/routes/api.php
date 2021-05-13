@@ -20,11 +20,13 @@ use Illuminate\Support\Facades\Route;
 Route::resource('products', ProductController::class)->only("index", "show");
 Route::post('orders/get', [OrderController::class, "findByEmail"]);
 Route::resource('orders', OrderController::class)->only("store");
-Route::resource('users', UserController::class);
+// Route::resource('users', UserController::class);
 
 Route::post('login', [UserController::class, "authenticate"]);
 
 Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'auth'], function(){
+    Route::resource('orders', OrderController::class);
+    Route::resource('users', UserController::class);
 });
 
 // Route::group(['middleware' => 'api'], function ($router) {

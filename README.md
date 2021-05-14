@@ -5,10 +5,10 @@ Welcome to my exam to the company WebforceHQ, i used technologys like Vue CLI an
 git clone https://github.com/En8oy/webforcehq-examen.git
 ```
 
-Database
+## Database
 Create database with name 'laravel'
 
-Backend
+## Backend
 
 ```
 cd backend
@@ -21,7 +21,7 @@ php artisan jwt:secret
 php artisan serve
 ```
 
-Frontend
+## Frontend
 ```
 cd frontend
 npm install

@@ -11,6 +11,8 @@ Backend
 cd backend
 composer install
 php artisan migrate --seed
+php artisan key:generate
+php artisan jwt:secret
 php artisan serve
 ```
 
@@ -18,7 +20,7 @@ Frontend
 ```
 cd frontend
 npm install
-npm run install
+npm run serve
 ```
 
 For the login need to enter to ``` /login ``` in frontend project.

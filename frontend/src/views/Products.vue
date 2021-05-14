@@ -5,7 +5,9 @@
     </p>
     <v-row class="text-center">
       <v-col
-        xl="3"
+        sm="12"
+        md="4"
+        cols="12"
         v-for="product in $store.state.Product.products"
         :key="product.slug"
         :to="'products/' + product.slug"

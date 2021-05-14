@@ -2,9 +2,16 @@
   <div>
     <v-row>
       <v-col cols="12" sm="12" md="6" class="text-center">
-        <v-img
+        <div v-if="$store.state.Product.product.media.length > 0">
+          <v-img
           :src="'http://127.0.0.1:8000/products/'+$store.state.Product.product.media[0].order_column +'/'+$store.state.Product.product.media[0].file_name"
         ></v-img>
+        </div>
+        <div v-else>
+          <v-img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png"
+          ></v-img>
+        </div>
       </v-col>
       <v-col cols="12" sm="12" md="6" class="text-center">
         <v-card elevation="10">

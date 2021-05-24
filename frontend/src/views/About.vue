@@ -1,8 +1,9 @@
 <template>
   <div class="about">
-    <!-- <h1 v-for="city in cities" :key="city.name" v-text="city.name"></h1> -->
-    <v-autocomplete :items="cities" item-text="name" item-value="alpha3Code" v-model="city">
+    <h1 v-for="city in cities" :key="city.name" v-text="city.name"></h1>
+    <v-img :src="city.flag" v-for="city in cities" :key="city.name"></v-img>
 
+    <v-autocomplete :items="cities" item-text="name" item-value="alpha3Code" v-model="city">
     </v-autocomplete>
     <v-btn :loading="loading">
       Hola
